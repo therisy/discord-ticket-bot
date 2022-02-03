@@ -5,10 +5,8 @@ export default async (client: Bot, interaction) => {
 
   if (interaction.customId === 'ticket_type') {
     if (!interaction.isSelectMenu()) return;
-
-    interaction.channel.permissionOverwrites.set([
-      { id: interaction.user.id, allow: ['VIEW_CHANNEL','SEND_MESSAGES'] },
-    ]);
+	
+    interaction.channel.permissionOverwrites.edit(interaction.user.id, { SEND_MESSAGES: true });
 
     interaction.channel.setName(
       `${interaction.values[0]}-${interaction.user.username}`
